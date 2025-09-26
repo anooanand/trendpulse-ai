@@ -2,46 +2,23 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/src/server.js",
-      "use": "@vercel/node"
+      "src": "api/server.js",
+      "use": "@vercel/node@2.0.0"
     },
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "src": "frontend/index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/src/server.js"
-    },
-    {
-      "src": "/auth/(.*)",
-      "dest": "backend/src/server.js"
-    },
-    {
-      "src": "/webhooks/(.*)",
-      "dest": "backend/src/server.js"
-    },
-    {
-      "src": "/health",
-      "dest": "backend/src/server.js"
+      "dest": "/api/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "dest": "/frontend/index.html"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "backend/src/server.js": {
-      "maxDuration": 30
-    }
-  }
+  "buildCommand": "cd frontend && pnpm install && pnpm run build"
 }
-

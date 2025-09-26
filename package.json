@@ -4,7 +4,7 @@
   "description": "TrendPulse AI - Shopify Analytics Dashboard for tracking stock sales performance",
   "main": "backend/src/server.js",
   "scripts": {
-    "build": "cd frontend && pnpm install && pnpm run build",
+    "build": "true",
     "start": "cd backend && npm start",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && pnpm run dev\"",
     "setup": "cd backend && npm install && cd ../frontend && pnpm install",
